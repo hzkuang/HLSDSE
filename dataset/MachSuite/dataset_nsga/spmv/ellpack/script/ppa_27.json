@@ -1,0 +1,40 @@
+{
+    "LATENCY": {
+        "best_latency": 2540,
+        "worst_latency": 2540,
+        "average_latency": 2540,
+        "best_time_latency": "25.400 us",
+        "worst_time_latency": "25.400 us",
+        "average_time_latency": "25.400 us",
+        "min_interval": 2541,
+        "max_interval": 2541,
+        "Latency": 2540
+    },
+    "HLS": {
+        "LUT": 31321,
+        "FF": 16064,
+        "DSP": 46,
+        "BRAM": 0,
+        "URAM": 0,
+        "CP": 7.01
+    },
+    "SYN": {
+        "LUT": 5690,
+        "FF": 7482,
+        "DSP": 46,
+        "BRAM": 0,
+        "URAM": 0,
+        "SRL": 598,
+        "CP": 6.496
+    },
+    "IMPL": {
+        "LUT": 5337,
+        "FF": 7474,
+        "DSP": 46,
+        "BRAM": 0,
+        "URAM": 0,
+        "SRL": 323,
+        "CP": 7.375,
+        "PWR": 0.354
+    }
+}

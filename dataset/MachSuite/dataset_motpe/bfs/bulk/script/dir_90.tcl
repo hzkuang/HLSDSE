@@ -1,0 +1,6 @@
+set_directive_pipeline -off bfs/loop_neighbors
+set_directive_array_reshape -factor 2 -type cyclic bfs edges
+set_directive_bind_op -op add -impl fabric -latency -1 bfs/loop_horizons horizon
+set_directive_bind_op -op add -impl dsp -latency -1 bfs/loop_nodes n
+set_directive_bind_op -op add -impl dsp -latency -1 bfs/loop_neighbors e
+set_directive_bind_op -op add -impl fabric -latency -1 bfs/loop_neighbors cnt

@@ -1,0 +1,236 @@
+{
+    "Option": {
+        "INLINE": {
+            "-off": [],
+            "-recursive": []
+        },
+        "PIPELINE": {
+            "-style": []
+        },
+        "UNROLL": {
+            "-factor": []
+        },
+        "PARTITION": {
+            "-factor": [],
+            "-type": []
+        },
+        "RESHAPE": {
+            "-factor": [],
+            "-type": []
+        },
+        "STORAGE": {
+            "-type": [],
+            "-impl": [],
+            "-latency": []
+        }
+    },
+    "Function": {},
+    "Loop": {
+        "group1": {
+            "level": [
+                "stencil3d/height_bound_col",
+                "stencil3d/height_bound_row"
+            ],
+            "unroll": [
+                "stencil3d/height_bound_col",
+                "stencil3d/height_bound_row"
+            ],
+            "pipeline": [
+                "stencil3d/height_bound_col",
+                "stencil3d/height_bound_row"
+            ],
+            "flatten": [
+                "stencil3d/height_bound_col"
+            ],
+            "stencil3d/height_bound_col": {
+                "UNROLL": {
+                    "-factor": 2
+                },
+                "PIPELINE": {
+                    "-style": "stp",
+                    "-state": "-off"
+                },
+                "FLATTEN": {
+                    "-state": "-on"
+                }
+            },
+            "stencil3d/height_bound_row": {
+                "UNROLL": {
+                    "-factor": 0
+                },
+                "PIPELINE": {
+                    "-style": "stp",
+                    "-state": "-off"
+                }
+            }
+        },
+        "group2": {
+            "level": [
+                "stencil3d/col_bound_height",
+                "stencil3d/col_bound_row"
+            ],
+            "unroll": [
+                "stencil3d/col_bound_height",
+                "stencil3d/col_bound_row"
+            ],
+            "pipeline": [
+                "stencil3d/col_bound_height",
+                "stencil3d/col_bound_row"
+            ],
+            "flatten": [
+                "stencil3d/col_bound_height"
+            ],
+            "stencil3d/col_bound_height": {
+                "UNROLL": {
+                    "-factor": 2
+                },
+                "PIPELINE": {
+                    "-style": "stp",
+                    "-state": "-on"
+                },
+                "FLATTEN": {
+                    "-state": "-on"
+                }
+            },
+            "stencil3d/col_bound_row": {
+                "UNROLL": {
+                    "-factor": 0
+                },
+                "PIPELINE": {
+                    "-style": "stp",
+                    "-state": "-on"
+                }
+            }
+        },
+        "group3": {
+            "level": [
+                "stencil3d/row_bound_height",
+                "stencil3d/row_bound_col"
+            ],
+            "unroll": [
+                "stencil3d/row_bound_height",
+                "stencil3d/row_bound_col"
+            ],
+            "pipeline": [
+                "stencil3d/row_bound_height",
+                "stencil3d/row_bound_col"
+            ],
+            "flatten": [
+                "stencil3d/row_bound_height"
+            ],
+            "stencil3d/row_bound_height": {
+                "UNROLL": {
+                    "-factor": 2
+                },
+                "PIPELINE": {
+                    "-style": "stp",
+                    "-state": "-off"
+                },
+                "FLATTEN": {
+                    "-state": "-off"
+                }
+            },
+            "stencil3d/row_bound_col": {
+                "UNROLL": {
+                    "-factor": 0
+                },
+                "PIPELINE": {
+                    "-style": "stp",
+                    "-state": "-off"
+                }
+            }
+        },
+        "group4": {
+            "level": [
+                "stencil3d/loop_height",
+                "stencil3d/loop_col",
+                "stencil3d/loop_row"
+            ],
+            "unroll": [
+                "stencil3d/loop_height",
+                "stencil3d/loop_col",
+                "stencil3d/loop_row"
+            ],
+            "pipeline": [
+                "stencil3d/loop_col",
+                "stencil3d/loop_row"
+            ],
+            "flatten": [
+                "stencil3d/loop_height",
+                "stencil3d/loop_col"
+            ],
+            "stencil3d/loop_height": {
+                "UNROLL": {
+                    "-factor": 2
+                },
+                "FLATTEN": {
+                    "-state": "-off"
+                }
+            },
+            "stencil3d/loop_col": {
+                "UNROLL": {
+                    "-factor": 0
+                },
+                "PIPELINE": {
+                    "-style": "stp",
+                    "-state": "-on"
+                },
+                "FLATTEN": {
+                    "-state": "-off"
+                }
+            },
+            "stencil3d/loop_row": {
+                "UNROLL": {
+                    "-factor": 0
+                },
+                "PIPELINE": {
+                    "-style": "stp",
+                    "-state": "-on"
+                }
+            }
+        }
+    },
+    "Array": {},
+    "Interface": {
+        "stencil3d orig": {
+            "PARTITION": {
+                "-factor": 0,
+                "-type": "block"
+            },
+            "RESHAPE": {
+                "-factor": 0,
+                "-type": "cyclic"
+            }
+        },
+        "stencil3d sol": {
+            "PARTITION": {
+                "-factor": 0,
+                "-type": "block"
+            },
+            "RESHAPE": {
+                "-factor": 2,
+                "-type": "block"
+            }
+        }
+    },
+    "Operation": {
+        "stencil3d/loop_row sum1": {
+            "add": {
+                "-impl": "dsp",
+                "-latency": -1
+            }
+        },
+        "stencil3d/loop_row mul0": {
+            "mul": {
+                "-impl": "dsp",
+                "-latency": -1
+            }
+        },
+        "stencil3d/loop_row mul1": {
+            "mul": {
+                "-impl": "dsp",
+                "-latency": -1
+            }
+        }
+    }
+}
