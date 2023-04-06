@@ -1,0 +1,56 @@
+inline:
+  - '-on'
+  - '-off'
+  - '-recursive'
+style:
+  - stp
+factor:
+  - 0
+  - 2
+state:
+  - '-on'
+  - '-off'
+arrtype:
+  - block
+  - cyclic
+opimpl:
+  int:
+    - dsp
+    - fabric
+  float:
+    - fabric
+    - fulldsp
+    - primitivedsp
+  double:
+    - fabric
+    - fulldsp
+  half:
+    - fabric
+    - fulldsp
+sttype:
+  - ram_1p
+  - ram_1wnr
+  - ram_2p
+  - ram_s2p
+stimpl:
+  - bram
+latency:
+  - -1
+POW:
+  - 1.516
+CLK:
+  - 9.716
+LATENCY:
+  - 2467
+LUT:
+  - 35634
+FF:
+  - 46419
+DSP:
+  - 268
+BRAM:
+  - 0
+URAM:
+  - 0
+SRL:
+  - 2762

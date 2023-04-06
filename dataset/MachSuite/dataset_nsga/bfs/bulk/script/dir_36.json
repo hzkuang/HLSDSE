@@ -1,0 +1,136 @@
+{
+    "Option": {
+        "INLINE": {
+            "-off": [],
+            "-recursive": []
+        },
+        "PIPELINE": {
+            "-style": []
+        },
+        "UNROLL": {
+            "-factor": []
+        },
+        "PARTITION": {
+            "-factor": [],
+            "-type": []
+        },
+        "RESHAPE": {
+            "-factor": [],
+            "-type": []
+        },
+        "STORAGE": {
+            "-type": [],
+            "-impl": [],
+            "-latency": []
+        }
+    },
+    "Function": {},
+    "Loop": {
+        "group1": {
+            "level": [
+                "bfs/loop_horizons",
+                "bfs/loop_nodes",
+                "bfs/loop_neighbors"
+            ],
+            "unroll": [
+                "bfs/loop_horizons",
+                "bfs/loop_nodes",
+                "bfs/loop_neighbors"
+            ],
+            "pipeline": [
+                "bfs/loop_neighbors"
+            ],
+            "flatten": [
+                null
+            ],
+            "bfs/loop_horizons": {
+                "UNROLL": {
+                    "-factor": 2
+                }
+            },
+            "bfs/loop_nodes": {
+                "UNROLL": {
+                    "-factor": 2
+                }
+            },
+            "bfs/loop_neighbors": {
+                "UNROLL": {
+                    "-factor": 2
+                },
+                "PIPELINE": {
+                    "-style": "stp",
+                    "-state": "-off"
+                }
+            }
+        }
+    },
+    "Array": {},
+    "Interface": {
+        "bfs nodes": {
+            "PARTITION": {
+                "-factor": 0,
+                "-type": "cyclic"
+            },
+            "RESHAPE": {
+                "-factor": 2,
+                "-type": "cyclic"
+            }
+        },
+        "bfs edges": {
+            "PARTITION": {
+                "-factor": 0,
+                "-type": "cyclic"
+            },
+            "RESHAPE": {
+                "-factor": 0,
+                "-type": "cyclic"
+            }
+        },
+        "bfs level": {
+            "PARTITION": {
+                "-factor": 2,
+                "-type": "block"
+            },
+            "RESHAPE": {
+                "-factor": 0,
+                "-type": "block"
+            }
+        },
+        "bfs level_counts": {
+            "PARTITION": {
+                "-factor": 0,
+                "-type": "cyclic"
+            },
+            "RESHAPE": {
+                "-factor": 0,
+                "-type": "cyclic"
+            }
+        }
+    },
+    "Operation": {
+        "bfs/loop_horizons horizon": {
+            "add": {
+                "-impl": "fabric",
+                "-latency": -1
+            }
+        },
+        "bfs/loop_nodes n": {
+            "add": {
+                "-impl": "fabric",
+                "-latency": -1
+            }
+        },
+        "bfs/loop_neighbors e": {
+            "add": {
+                "-impl": "dsp",
+                "-latency": -1
+            }
+        },
+        "bfs/loop_neighbors cnt": {
+            "add": {
+                "-impl": "fabric",
+                "-latency": -1
+            }
+        }
+    }
+}
