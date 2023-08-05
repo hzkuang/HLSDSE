@@ -71,7 +71,7 @@ class HLSBasic(object):
         return self.ori_prj_path
 
     def get_dataset_path(self):
-        self.dataset_path = os.path.join(self.root, 'dataset', self.bench, self.alg + '_ds', self.case)
+        self.dataset_path = os.path.join(self.root, 'dse_ds', self.bench, self.alg + '_ds', self.case)
         if self.ver != "":
             self.dataset_path = os.path.join(self.dataset_path, self.ver)
         return self.dataset_path

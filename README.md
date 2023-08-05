@@ -25,8 +25,10 @@ cd flow
 python3 hls_dse.py --case aes --ver aes
 ```
 When running the above command, MOTPE with float encoding is used as default to explore the design space of *aes*.
+The samples during DSE process are saved to path "./dse_ds/MachSuite/***_ds/". 
+The paper results are in path "./dataset/MachSuite/".
 
-If you want change the DSE algorithm or the encoding method, add the following arguments:
+If you want to change the DSE algorithm or the encoding method, add the following arguments:
 - --alg [options: motpe, nsga, sa]
 - --encode [options: float, discrete]
 
