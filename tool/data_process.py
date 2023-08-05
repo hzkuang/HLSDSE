@@ -50,11 +50,11 @@ if __name__ == "__main__":
     perf = perfList[index]
     area = areaList[index]
 
-    dataset_path = os.path.abspath("../dataset/MachSuite")
-    path_bo = os.path.join(dataset_path, 'dataset_motpe', bench, 'script')
-    path_ga = os.path.join(dataset_path, 'dataset_nsga', bench, 'script')
-    path_sa = os.path.join(dataset_path, 'dataset_sa', bench, 'script')
-    path_ds = os.path.join(dataset_path, 'dataset_discrete', bench, 'script')
+    dataset_path = os.path.abspath("../dse_ds/MachSuite")
+    path_bo = os.path.join(dataset_path, 'motpe_ds', bench, 'script')
+    path_ga = os.path.join(dataset_path, 'nsga_ds', bench, 'script')
+    path_sa = os.path.join(dataset_path, 'sa_ds', bench, 'script')
+    path_ds = os.path.join(dataset_path, 'discrete_ds', bench, 'script')
     listPPA_bo = getListPPA(path_bo)
     listPPA_ga = getListPPA(path_ga)
     listPPA_sa = getListPPA(path_sa)

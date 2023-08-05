@@ -123,7 +123,8 @@ def runDSE(basic):
     case = basic.case
     alg = basic.alg
     num = basic.num
-    study_name = case + "_" + alg + "_dse"
+    encode = basic.encode
+    study_name = case + "_" + alg + "_" + encode + "_dse"
     storage = "sqlite:///" + study_name + ".db"
     # specify random number seed
     seed = 128
@@ -142,12 +143,20 @@ def runDSE(basic):
             sampler = optuna.samplers.MOTPESampler(n_startup_trials=n_startup_trials,
                                                    n_ehvi_candidates=n_ehvi_candidates,
                                                    seed=seed)
-        else:
+        elif alg == "nsga":
             print("[INFO] Using NSGA-II for HLS DSE")
             sampler = optuna.samplers.NSGAIISampler(seed=seed)
+        else:
+            print("[INFO] Using MOTPE based Bayesian Optimization for HLS DSE")
+            # hyperparameters of MOTPE
+            n_startup_trials = 20
+            n_ehvi_candidates = 24
+            sampler = optuna.samplers.MOTPESampler(n_startup_trials=n_startup_trials,
+                                                   n_ehvi_candidates=n_ehvi_candidates,
+                                                   seed=seed)
 
         study = optuna.create_study(storage=storage, study_name=study_name, sampler=sampler,
-                                    directions=["minimize", "minimize", "minimize"], load_if_exists=True)
+                                    directions=["minimize", "minimize", "minimize"], load_if_exists=False)
 
     study.optimize(objective, n_trials=num, show_progress_bar=True)
     print("Number of finished trials: ", len(study.trials))
