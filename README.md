@@ -45,5 +45,5 @@ These two algorithms are for comparison with our MOTPE-F.
 - [ISEDA'23] Multi-objective Design Space Exploration for High-Level Synthesis via Bayesian Optimization
 
 ## Contact
-- If there is any question, please email to hzkuang22@m.fudan.edu.cn
+- If there are any questions, please email to hzkuang22@m.fudan.edu.cn
 - If you find HLSDSE useful, please cite our paper.
